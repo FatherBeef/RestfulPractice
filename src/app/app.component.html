@@ -1,0 +1,37 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="jumbotron" style="text-align:center">
+  <h1>
+   {{ title }}!
+
+  </h1>
+<h3>Using HttpModule to fetch from jsonplaceholder.typicode.com</h3>
+  <button class="btn btn-primary" (click)="getPosts() ">Get Posts</button>
+  <button class="btn btn-primary" (click)="getUsers()">Get Users</button>
+</div>
+<pagination-controls autoHide="true"  style="text-align:center" (pageChange)="p = $event"></pagination-controls>
+
+<div *ngFor="let post of posts | async | paginate: { itemsPerPage: 10, currentPage: p }">
+  <div class="container">
+  <!-- {{ post.userId | json }} -->
+  <h1> {{ post.title }}</h1>
+
+
+    <p> {{ post.body }}</p>
+  </div>
+
+</div>
+
+<div *ngFor="let user of posts | async | paginate: { itemsPerPage: 5, currentPage: p }">
+  <div class="container">
+  <!-- {{ post.userId | json }} -->
+  <h2> {{ user.name }}</h2>
+
+    <p> {{ user.phone }}</p>
+    <p> {{ user.email }}</p>
+    <p> {{ user.website }}</p>
+  </div>
+</div>
+<pagination-controls autoHide="true"  style="text-align:center" (pageChange)="p = $event"></pagination-controls>
+
+
+<router-outlet></router-outlet>
